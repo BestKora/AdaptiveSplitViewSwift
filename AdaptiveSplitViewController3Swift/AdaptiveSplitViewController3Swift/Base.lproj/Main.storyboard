@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Quc-Jw-fD0">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--Split View Controller-->
+        <scene sceneID="CvR-fD-EXN">
+            <objects>
+                <splitViewController id="Quc-Jw-fD0" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="KKc-1n-Ggm" kind="relationship" relationship="masterViewController" id="cN9-i2-aUG"/>
+                        <segue destination="Cp8-nw-DvU" kind="relationship" relationship="detailViewController" id="1pU-56-JWO"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gg2-FY-QYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-611" y="242"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cL9-ub-ysC">
+            <objects>
+                <navigationController storyboardIdentifier="detailNavigation" automaticallyAdjustsScrollViewInsets="NO" id="Cp8-nw-DvU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="crQ-dy-wm6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gbp-zZ-S0x" kind="relationship" relationship="rootViewController" id="bhx-o7-2Xz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xqG-fr-bYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="103" y="622"/>
+        </scene>
+        <!--Flickr Photographers-->
+        <scene sceneID="8Uo-Pa-GrU">
+            <objects>
+                <tableViewController id="OpN-NC-MKH" customClass="JustPostedFlickrPhotosTVC" customModule="AdaptiveSplitViewController3Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CnM-L4-Xaf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photographerCell" textLabel="Fwc-RP-7bU" detailTextLabel="dGd-Rk-nKe" style="IBUITableViewCellStyleSubtitle" id="RSO-jU-BbY">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RSO-jU-BbY" id="kKw-t7-pYT">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fwc-RP-7bU">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dGd-Rk-nKe">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="l6J-Le-nEa" kind="show" identifier="Show List Photos" id="Ruy-9f-0Qm">
+                                        <nil key="action"/>
+                                    </segue>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OpN-NC-MKH" id="P3q-0X-ESj"/>
+                            <outlet property="delegate" destination="OpN-NC-MKH" id="bDV-Vd-zwV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Flickr Photographers" id="9M9-K8-P60"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="tCe-SB-tOE">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="fetchPhotos" destination="OpN-NC-MKH" eventType="valueChanged" id="20O-Ve-2QN"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9gV-Oa-GIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="-107"/>
+        </scene>
+        <!--Flickr Photos-->
+        <scene sceneID="3RA-Ma-MAj">
+            <objects>
+                <tableViewController id="l6J-Le-nEa" customClass="PhotosSavedNSUserDefaults" customModule="AdaptiveSplitViewController3Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BAM-hR-t6s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoCell" textLabel="5Jj-1o-XYB" detailTextLabel="CWr-IB-Voq" style="IBUITableViewCellStyleSubtitle" id="iFe-1C-R5J">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iFe-1C-R5J" id="CXU-zk-PEg">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Jj-1o-XYB">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CWr-IB-Voq">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Cp8-nw-DvU" kind="show" identifier="Show Photo" action="showDetailViewController:sender:" id="VCf-e1-MiJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="l6J-Le-nEa" id="7Vs-mT-4ye"/>
+                            <outlet property="delegate" destination="l6J-Le-nEa" id="iNK-e7-KMz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Flickr Photos" id="q0Y-Nk-OmV"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Bn3-pX-J2C">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JLh-XW-gox" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1402" y="-107"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="TDG-U3-WQW">
+            <objects>
+                <viewController id="gbp-zZ-S0x" customClass="ImageViewController" customModule="AdaptiveSplitViewController3Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hq9-Nq-4qo"/>
+                        <viewControllerLayoutGuide type="bottom" id="3xj-IE-5EB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1nF-FE-jXh">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nK7-pw-L9m">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                            </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T7j-QF-k4B">
+                                <rect key="frame" x="290" y="258" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nK7-pw-L9m" firstAttribute="top" secondItem="Hq9-Nq-4qo" secondAttribute="bottom" id="0iV-bH-N6V"/>
+                            <constraint firstItem="T7j-QF-k4B" firstAttribute="centerY" secondItem="nK7-pw-L9m" secondAttribute="centerY" id="Bn1-Zc-GPd"/>
+                            <constraint firstItem="nK7-pw-L9m" firstAttribute="leading" secondItem="1nF-FE-jXh" secondAttribute="leading" id="JSe-Fu-qfS"/>
+                            <constraint firstItem="nK7-pw-L9m" firstAttribute="bottom" secondItem="3xj-IE-5EB" secondAttribute="top" id="S8S-K4-c3T"/>
+                            <constraint firstAttribute="trailing" secondItem="nK7-pw-L9m" secondAttribute="trailing" id="gF8-Y0-B2N"/>
+                            <constraint firstItem="T7j-QF-k4B" firstAttribute="centerX" secondItem="nK7-pw-L9m" secondAttribute="centerX" id="gof-kH-ZbY"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Image View Controller" id="Tic-A7-PvE"/>
+                    <connections>
+                        <outlet property="scrollView" destination="nK7-pw-L9m" id="VF5-PF-KSC"/>
+                        <outlet property="spinner" destination="T7j-QF-k4B" id="iRJ-bz-jiK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LB0-mb-tE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="622"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="VJO-VC-MHW">
+            <objects>
+                <tabBarController id="KKc-1n-Ggm" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ffk-YP-QLN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="M1a-Ed-F1k" kind="relationship" relationship="viewControllers" id="29G-WH-zK1"/>
+                        <segue destination="MCh-Fe-Vy5" kind="relationship" relationship="viewControllers" id="bDp-RO-Uoa"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SXX-uh-wHw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-594" y="-540"/>
+        </scene>
+        <!--Flickr Photographers-->
+        <scene sceneID="FpX-q2-oHR">
+            <objects>
+                <navigationController title="Flickr Photographers" automaticallyAdjustsScrollViewInsets="NO" id="M1a-Ed-F1k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Photographers" image="Map_Path" selectedImage="Map_Path" id="Lqw-2H-vLy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DHC-NK-qWE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OpN-NC-MKH" kind="relationship" relationship="rootViewController" id="RH1-jP-Ps1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u7H-HD-p8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="-107"/>
+        </scene>
+        <!--Resents-->
+        <scene sceneID="SBQ-dk-TaE">
+            <objects>
+                <navigationController title="Resents" automaticallyAdjustsScrollViewInsets="NO" id="MCh-Fe-Vy5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="3sW-FL-3JL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ahm-X6-hDt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="a5f-rP-GAf" kind="relationship" relationship="rootViewController" id="pdG-rS-vNp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9f7-Zn-Ef7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="-777"/>
+        </scene>
+        <!--Resents-->
+        <scene sceneID="9RE-Sy-iMU">
+            <objects>
+                <tableViewController id="a5f-rP-GAf" customClass="ResentsTVC" customModule="AdaptiveSplitViewController3Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Fo-dy-aAC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoCell" textLabel="GfA-5G-hLG" detailTextLabel="paD-lL-Jdt" style="IBUITableViewCellStyleSubtitle" id="SiX-IQ-Dfl">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SiX-IQ-Dfl" id="Jbd-DX-GZE">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GfA-5G-hLG">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="paD-lL-Jdt">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Cp8-nw-DvU" kind="showDetail" identifier="Show Photo" id="7wr-z8-M7U"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="a5f-rP-GAf" id="mIp-Wu-oth"/>
+                            <outlet property="delegate" destination="a5f-rP-GAf" id="0rL-KL-Cde"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Resents" id="6dk-Cy-n9Y"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Yv7-x8-dup">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="fetchPhotos" destination="a5f-rP-GAf" eventType="valueChanged" id="8fn-fe-oN9"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q9L-lx-4cA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="761" y="-777"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Map_Path" width="26" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="7wr-z8-M7U"/>
+    </inferredMetricsTieBreakers>
+</document>
