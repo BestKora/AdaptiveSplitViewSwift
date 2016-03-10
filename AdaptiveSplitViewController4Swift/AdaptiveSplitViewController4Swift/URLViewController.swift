@@ -7,35 +7,35 @@
 import UIKit
 
 class URLViewController: UIViewController,
-                         UIPopoverPresentationControllerDelegate {
-	
-	var url : NSURL? {
-		didSet {
-			self.updateUI()
-		}
-	}
-
-	@IBOutlet weak var urlTextView: UITextView!
-	 
+UIPopoverPresentationControllerDelegate {
+    
+    var url : NSURL? {
+        didSet {
+            self.updateUI()
+        }
+    }
+    
+    @IBOutlet weak var urlTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.updateUI()
+        self.updateUI()
     }
-
-	func updateUI() {
-		if let textView = self.urlTextView {
-			if let url = self.url {
-				textView.text = url.absoluteString
-			}
-		}
-	}
+    
+    func updateUI() {
+        if let textView = self.urlTextView {
+            if let url = self.url {
+                textView.text = url.absoluteString
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         modalPresentationStyle = .Popover
         popoverPresentationController?.delegate = self
     }
- 
+    
     override var preferredContentSize: CGSize {
         get {
             if urlTextView != nil && presentingViewController != nil {
@@ -51,5 +51,4 @@ class URLViewController: UIViewController,
         traitCollection: UITraitCollection) -> UIModalPresentationStyle {
             return UIModalPresentationStyle.None
     }
-
 }

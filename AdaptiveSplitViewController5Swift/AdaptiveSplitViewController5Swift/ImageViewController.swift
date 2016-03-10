@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ImageViewController: UIViewController, UIScrollViewDelegate
+class ImageViewController: UIViewController, UIScrollViewDelegate,
+    
+                           UIPopoverPresentationControllerDelegate
 {
     // наша Model
     // устанавливается извне (publicly)
@@ -168,8 +170,18 @@ class ImageViewController: UIViewController, UIScrollViewDelegate
         // Передаем выбранный объект новому View Controller.
         if segue.identifier == "Show URL" {
             if let urlVC = segue.destinationViewController as? URLViewController {
+                
+                if let ppc = urlVC.popoverPresentationController {
+                    ppc.delegate = self
+                }
                 urlVC.url = self.imageURL
             }
         }
     }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController,
+                          traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+            return .None
+    }
+
 }

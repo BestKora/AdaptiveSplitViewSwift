@@ -6,8 +6,7 @@
 
 import UIKit
 
-class URLViewController: UIViewController,
-                         UIPopoverPresentationControllerDelegate {
+class URLViewController: UIViewController {
 	
 	var url : NSURL? {
 		didSet {
@@ -30,26 +29,23 @@ class URLViewController: UIViewController,
 		}
 	}
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        modalPresentationStyle = .Popover
-        popoverPresentationController?.delegate = self
-    }
- 
-    override var preferredContentSize: CGSize {
+     override var preferredContentSize: CGSize {
         get {
             if urlTextView != nil && presentingViewController != nil {
-                return urlTextView.sizeThatFits(presentingViewController!.view.bounds.size)
+              var presentVC = presentingViewController!
+                if let presentingVC = presentingViewController as? UISplitViewController
+                                            where presentingVC.viewControllers.count == 2,
+                   let detailNav = presentingVC.viewControllers[1] as? UINavigationController,
+                   let detailVC = detailNav.topViewController as? ImageViewController
+                {
+                    presentVC = detailVC
+                }
+                
+                return urlTextView.sizeThatFits(presentVC.view.bounds.size)
             } else {
                 return super.preferredContentSize
             }
         }
         set { super.preferredContentSize = newValue }
     }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController,
-        traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-            return UIModalPresentationStyle.None
-    }
-
 }

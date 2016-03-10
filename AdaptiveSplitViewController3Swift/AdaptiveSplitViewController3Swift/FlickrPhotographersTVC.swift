@@ -13,13 +13,13 @@ class FlickrPhotographersTVC: UITableViewController {
     var photos = [Photo]() {
         didSet{
             let photographerNames =
-            Array(Set( photos.flatMap{$0.photographer == "" ? nil : $0.photographer}))
+            Array(Set( photos.flatMap{$0.photographer == "" ? nil : $0.photographer})).sort()
             photographers =
                 photographerNames.flatMap{Photographer.init(name: $0, allPhotos: photos)}
         }
     }
     
-    var photographers = [Photographer]() {
+    private (set) var photographers = [Photographer]() {
         didSet {
             self.tableView.reloadData()
         }

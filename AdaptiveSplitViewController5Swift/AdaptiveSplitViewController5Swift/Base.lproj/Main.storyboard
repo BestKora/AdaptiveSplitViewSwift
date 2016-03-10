@@ -348,8 +348,8 @@
                             <mask key="constraints">
                                 <exclude reference="fEx-aZ-0ai"/>
                                 <exclude reference="Cpm-uB-rZO"/>
-                                <exclude reference="gDj-Xh-8PA"/>
                                 <exclude reference="O15-eg-JIj"/>
+                                <exclude reference="gDj-Xh-8PA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -359,8 +359,8 @@
                             <mask key="constraints">
                                 <include reference="fEx-aZ-0ai"/>
                                 <include reference="Cpm-uB-rZO"/>
-                                <include reference="gDj-Xh-8PA"/>
                                 <include reference="O15-eg-JIj"/>
+                                <include reference="gDj-Xh-8PA"/>
                             </mask>
                         </variation>
                     </view>

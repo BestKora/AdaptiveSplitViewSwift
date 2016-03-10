@@ -19,7 +19,7 @@ class FlickrPhotographersTVC: UITableViewController {
                    }
     }
     
-    var photographers = [Photographer]() {
+    private (set) var photographers = [Photographer]() {
         didSet {
             self.tableView.reloadData()
         }

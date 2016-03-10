@@ -32,6 +32,7 @@ final class ResentsDefault {
     private func addPhoto(photo:Photo, inDefaultsPhotos:[[String:String]]) -> [[String:String]]{
         var array = inDefaultsPhotos
         let photoDictionary = photo.toDictionary()
+
         if array.count >= Constants.ResentsPhotoAmount {
             array.removeLast()
         }
