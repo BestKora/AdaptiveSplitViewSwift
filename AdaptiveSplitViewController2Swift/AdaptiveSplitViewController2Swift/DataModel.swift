@@ -17,22 +17,26 @@ struct Photo {
     
     init?(json:[String:AnyObject]){
         
-        guard let title = json[FLICKR_PHOTO_TITLE] as? String,
-            let subtitle = (json as AnyObject).valueForKeyPath(FLICKR_PHOTO_DESCRIPTION) as? String,
+        guard var title = json[FLICKR_PHOTO_TITLE] as? String,
+            var subtitle = (json as AnyObject).valueForKeyPath(FLICKR_PHOTO_DESCRIPTION) as? String,
             let imageURL = FlickrFetcher.URLforPhoto(json,
                                                      format:FlickrPhotoFormatLarge)?.absoluteString,
             let unique = json[FLICKR_PHOTO_ID] as? String,
             let photographer =  json[FLICKR_PHOTO_OWNER] as? String
         else {return nil}
         
+        
+        // убираем пробелы с обоих концов
+        title = title.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        subtitle = subtitle.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
         // специальные требования формирования атрибутов Photo
-        let subtitleNew =  subtitle ?? ""
-        let titleNew =  title ?? subtitleNew
+        let titleNew = title == "" ? subtitle: title
         self.title = titleNew == "" ? "Unknown": titleNew
-        self.subtitle = subtitleNew
-        self.unique = unique ?? ""
-        self.imageURL = imageURL ?? ""
-        self.photographer = photographer ?? ""
+        self.subtitle = subtitle
+        self.unique = unique
+        self.imageURL = imageURL
+        self.photographer = photographer
     }
 }
 
