@@ -37,7 +37,6 @@ struct Photo {
         self.unique = unique
         self.imageURL = imageURL
         self.photographer = photographer
-
     }
     
 }

@@ -12,22 +12,35 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
+    lazy var coreDataStack = CoreDataStack()
     func application(application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [NSObject: AnyObject]?) -> Bool {
-            if let splitViewController = self.window?.rootViewController as? UISplitViewController,
-                navigationController = splitViewController.viewControllers.last as? UINavigationController {
-                    navigationController.topViewController?.navigationItem.leftBarButtonItem
-                                                                  = splitViewController.displayModeButtonItem()
-                    navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
-                    splitViewController.delegate = self
-                    
-                    splitViewController.preferredDisplayMode = .AllVisible
-                    
-                    //  splitViewController.preferredPrimaryColumnWidthFraction = 0.5
-                    //  splitViewController.maximumPrimaryColumnWidth = 512
-                    
-            }
             
+            if let split = self.window?.rootViewController as? UISplitViewController,
+                navigationMaster = split.viewControllers.first as? UINavigationController,
+                topMaster = navigationMaster.topViewController
+            {
+                if topMaster.respondsToSelector("setCoreDataStack:") {
+                    topMaster.performSelector("setCoreDataStack:", withObject: coreDataStack)
+                }
+            }
+
+            if let split = self.window?.rootViewController as? UISplitViewController,
+                navigationDetail = split.viewControllers.last as? UINavigationController
+            {
+                    navigationDetail.topViewController?.navigationItem.leftBarButtonItem
+                                                                  = split.displayModeButtonItem()
+                    navigationDetail.topViewController?.navigationItem.leftItemsSupplementBackButton = true
+                    split.delegate = self
+                    
+                    split.preferredDisplayMode = .AllVisible
+                    
+                    //  split.preferredPrimaryColumnWidthFraction = 0.5
+                    //  split.maximumPrimaryColumnWidth = 512
+                    
+                  
+            }
+           
             self.window?.makeKeyAndVisible()
             return true
     }

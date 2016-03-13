@@ -11,41 +11,43 @@ import CoreData
 
 class JustPostedFlickrPhotosTVC: PhotosCDTVC {
     var photos = [[String:AnyObject]]()
-    lazy var coreDataStack = CoreDataStack()
-    lazy var context:NSManagedObjectContext = self.coreDataStack.managedObjectContext
+//    lazy var coreDataStack = CoreDataStack()
+    var coreDataStack: CoreDataStack! {
+        didSet {
+             fetchPhotos()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPhotos()
+     //   fetchPhotos()
     }
     
     @IBAction func fetchPhotos(){
         self.refreshControl?.beginRefreshing()
         
-        self.setupFetchedResultsController(self.context)
+        self.setupFetchedResultsController(coreDataStack.managedObjectContext)
         let url = FlickrFetcher.URLforRecentGeoreferencedPhotos()
-        let task = NSURLSession.sharedSession().downloadTaskWithURL(url) {
-            (localURL, response, error) in
+        let task = NSURLSession.sharedSession().downloadTaskWithURL(url) {(localURL, response, error) in
             guard error == nil else {return}
             
             // получаем массив словарей для фотографий с Flickr
-            guard let data = NSData(contentsOfURL: localURL!),
+            guard let url = localURL,
+                let data = NSData(contentsOfURL: url),
                 let json = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments),
                 let flickrPhotos = json.valueForKeyPath(FLICKR_RESULTS_PHOTOS)as? [[String : AnyObject]]
                 else { return}
             
             // сохраняем
-           self.photos = flickrPhotos
-           
+            self.photos = flickrPhotos
             
             dispatch_async(dispatch_get_main_queue()){
-                
                 self.refreshControl?.endRefreshing()
                 
                 // Записываем в Core Data
-                Photo.loadPhotosFromFlickr(self.photos, context: self.context)
+                Photo.loadPhotosFromFlickr(self.photos, context: self.coreDataStack.managedObjectContext)
                 self.coreDataStack.saveMainContext()
-           }
+            }
         }
         task.resume()
     }

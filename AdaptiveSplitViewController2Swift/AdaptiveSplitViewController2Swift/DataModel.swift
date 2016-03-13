@@ -23,7 +23,7 @@ struct Photo {
                                                      format:FlickrPhotoFormatLarge)?.absoluteString,
             let unique = json[FLICKR_PHOTO_ID] as? String,
             let photographer =  json[FLICKR_PHOTO_OWNER] as? String
-        else {return nil}
+            else {return nil}
         
         
         // убираем пробелы с обоих концов
@@ -45,9 +45,9 @@ struct Photographer {
     let photos :[Photo]
     
     init?(name: String,allPhotos:[Photo]){
-    guard name != "" else {return nil}
-    self.name = name
-    self.photos = allPhotos.filter({$0.photographer == name })
+        guard name != "" else {return nil}
+        self.name = name
+        self.photos = allPhotos.filter({$0.photographer == name })
     }
 }
 

@@ -80,12 +80,12 @@
 				E4EFF3981C9339DB00560683 /* Flickr Fetcher */,
 				E4EFF3851C93397000560683 /* Main.storyboard */,
 				E4EFF3A51C933ACC00560683 /* AppDelegate.swift */,
+				E4EFF3951C9339CB00560683 /* AdaptiveSplitViewController6Swift-Bridging-Header.h */,
 				E4EFF3D31C9464EE00560683 /* Core Data */,
 				E4EFF3A71C933ADB00560683 /* Controller */,
 				E4EFF3881C93397000560683 /* Assets.xcassets */,
 				E4EFF38A1C93397000560683 /* LaunchScreen.storyboard */,
 				E4EFF38D1C93397000560683 /* Info.plist */,
-				E4EFF3951C9339CB00560683 /* AdaptiveSplitViewController6Swift-Bridging-Header.h */,
 			);
 			path = AdaptiveSplitViewController6Swift;
 			sourceTree = "<group>";
