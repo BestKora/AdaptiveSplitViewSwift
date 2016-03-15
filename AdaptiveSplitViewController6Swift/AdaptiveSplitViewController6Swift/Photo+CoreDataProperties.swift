@@ -15,5 +15,5 @@ extension Photo {
     @NSManaged var subtitle: String
     @NSManaged var title: String
     @NSManaged var unique: String
-    @NSManaged var whoTook: Photographer
+    @NSManaged var whoTook: Photographer?
   }

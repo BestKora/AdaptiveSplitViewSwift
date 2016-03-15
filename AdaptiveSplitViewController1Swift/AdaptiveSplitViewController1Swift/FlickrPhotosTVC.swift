@@ -22,7 +22,8 @@ class FlickrPhotosTVC: UITableViewController {
 
     // MARK: - Table view data source
     
-    override func tableView(tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView,
+                                     numberOfRowsInSection section: Int) -> Int {
         
             return photos.count
     }

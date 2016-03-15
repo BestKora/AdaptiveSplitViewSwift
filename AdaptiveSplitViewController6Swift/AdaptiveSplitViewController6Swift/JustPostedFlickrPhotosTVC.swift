@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 
 class JustPostedFlickrPhotosTVC: PhotosCDTVC {
-    var photos = [[String:AnyObject]]()
-//    lazy var coreDataStack = CoreDataStack()
     var coreDataStack: CoreDataStack! {
         didSet {
              fetchPhotos()
@@ -35,17 +33,16 @@ class JustPostedFlickrPhotosTVC: PhotosCDTVC {
             guard let url = localURL,
                 let data = NSData(contentsOfURL: url),
                 let json = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments),
-                let flickrPhotos = json.valueForKeyPath(FLICKR_RESULTS_PHOTOS)as? [[String : AnyObject]]
+                let flickrPhotos = json.valueForKeyPath(FLICKR_RESULTS_PHOTOS) as? [[String : AnyObject]]
                 else { return}
-            
-            // сохраняем
-            self.photos = flickrPhotos
             
             dispatch_async(dispatch_get_main_queue()){
                 self.refreshControl?.endRefreshing()
                 
                 // Записываем в Core Data
-                Photo.loadPhotosFromFlickr(self.photos, context: self.coreDataStack.managedObjectContext)
+                _ = flickrPhotos.flatMap({ (dict) -> Photo? in
+                    return Photo.init(dictionary: dict, context: self.coreDataStack.managedObjectContext)
+                })
                 self.coreDataStack.saveMainContext()
             }
         }

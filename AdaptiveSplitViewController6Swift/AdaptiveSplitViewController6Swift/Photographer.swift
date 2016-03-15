@@ -12,16 +12,15 @@ import CoreData
 
 class Photographer: NSManagedObject {
     
-    // Insert code here to add functionality to your managed object subclass
-    class func photographer(name: String, context: NSManagedObjectContext) -> Photographer? {
-        var photographer: Photographer?
+     convenience init?(name: String, context: NSManagedObjectContext) {
         
-        if !name.isEmpty {
-            guard let entity = NSEntityDescription.entityForName("Photographer", inManagedObjectContext: context)
-                else {return nil}
-            photographer = Photographer(entity: entity, insertIntoManagedObjectContext: context)
-            photographer?.name = name
-        }
-        return photographer
+        // убираем пробелы с обоих концов
+        let photographerName = name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        guard !photographerName.isEmpty ,
+            let entity = NSEntityDescription.entityForName("Photographer", inManagedObjectContext: context)
+            else {return nil}
+        self.init(entity: entity, insertIntoManagedObjectContext: context)
+        self.name = photographerName
     }
+
 }
